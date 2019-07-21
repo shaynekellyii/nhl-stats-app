@@ -2,11 +2,10 @@ package com.shaynek.hockey.common.di
 
 import android.content.Context
 import android.preference.PreferenceManager
+import com.shaynek.hockey.common.AppRepository
 import com.shaynek.hockey.common.db.Preferences
 import com.shaynek.hockey.common.network.HockeyApi
-import com.shaynek.hockey.selectteam.SelectTeamRepository
 import com.shaynek.hockey.common.util.API_BASE_URL
-import com.shaynek.hockey.standings.StandingsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
@@ -31,11 +30,7 @@ class AppModule(private val appContext: Context) {
 
     @Provides
     @Reusable
-    fun provideSelectTeamRepository(hockeyApi: HockeyApi): SelectTeamRepository = SelectTeamRepository(hockeyApi)
-
-    @Provides
-    @Reusable
-    fun provideStandingsRepository(hockeyApi: HockeyApi): StandingsRepository = StandingsRepository(hockeyApi)
+    fun provideRepository(hockeyApi: HockeyApi): AppRepository = AppRepository(hockeyApi)
 
     @Provides
     @Reusable

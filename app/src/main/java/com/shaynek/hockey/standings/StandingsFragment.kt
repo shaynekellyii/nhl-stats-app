@@ -10,7 +10,8 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.shaynek.hockey.R
-import com.shaynek.hockey.common.BaseFragment
+import com.shaynek.hockey.BaseFragment
+import com.shaynek.hockey.common.AppRepository
 import com.shaynek.hockey.common.di.AppInjector
 import com.shaynek.hockey.common.model.DataStatus
 import kotlinx.android.synthetic.main.fragment_standings.*
@@ -19,7 +20,7 @@ import javax.inject.Inject
 class StandingsFragment : BaseFragment() {
 
     @Inject
-    lateinit var repository: StandingsRepository
+    lateinit var repository: AppRepository
 
     private val viewModel: StandingsViewModel by lazy {
         ViewModelProviders
