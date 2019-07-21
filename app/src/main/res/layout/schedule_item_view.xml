@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.shaynek.hockey.schedule.ScheduleItemView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/schedule_item_left_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="16dp"/>
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/schedule_item_right_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="16dp"/>
+
+    <TextView
+            android:id="@+id/schedule_item_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            tools:text="7:05 PM"
+            app:layout_constraintStart_toStartOf="@id/schedule_item_left_guideline"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+            android:id="@+id/schedule_item_away_team"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_marginTop="16dp"
+            android:textColor="@android:color/black"
+            app:layout_constraintStart_toStartOf="@id/schedule_item_left_guideline"
+            app:layout_constraintTop_toBottomOf="@id/schedule_item_time"
+            tools:text="Carolina"/>
+
+    <TextView
+            android:id="@+id/schedule_item_home_team"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_marginTop="16dp"
+            android:textColor="@android:color/black"
+            app:layout_constraintStart_toStartOf="@id/schedule_item_left_guideline"
+            app:layout_constraintTop_toBottomOf="@id/schedule_item_away_team"
+            tools:text="Vancouver"/>
+
+    <TextView
+            android:id="@+id/schedule_item_away_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="italic"
+            android:layout_marginTop="16dp"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toEndOf="@id/schedule_item_right_guideline"
+            app:layout_constraintTop_toBottomOf="@id/schedule_item_time"
+            tools:text="7"/>
+
+    <TextView
+            android:id="@+id/schedule_item_home_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_marginTop="16dp"
+            android:textColor="@android:color/black"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="@id/schedule_item_right_guideline"
+            app:layout_constraintTop_toBottomOf="@id/schedule_item_away_team"
+            tools:text="0"/>
+
+    <TextView
+            android:id="@+id/schedule_item_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="italic"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintStart_toStartOf="@id/schedule_item_left_guideline"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/schedule_item_home_team"
+            tools:text="Scheduled"/>
+
+</com.shaynek.hockey.schedule.ScheduleItemView>
