@@ -1,64 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.shaynek.hockey.standings.StandingsHeaderView
+<com.shaynek.hockey.standings.StandingsEntryView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="4dp"
-        android:paddingTop="4dp"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
-        android:layout_marginTop="4dp"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:background="#FF000000">
+        xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
-            android:id="@+id/standings_header_division"
+            android:id="@+id/standings_entry_team"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
-            android:textColor="#FFFFFFFF"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:text="Metropolitan"/>
+            tools:text="Washington Capitals"/>
 
     <TextView
-            android:id="@+id/standings_header_wins"
+            android:id="@+id/standings_entry_wins"
             android:layout_width="32dp"
             android:layout_height="wrap_content"
-            android:textColor="#FFFFFFFF"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/standings_header_division"
-            android:text="@string/w"/>
+            app:layout_constraintStart_toEndOf="@id/standings_entry_team"
+            android:text="32"/>
 
     <TextView
-            android:id="@+id/standings_header_losses"
+            android:id="@+id/standings_entry_losses"
             android:layout_width="32dp"
             android:layout_height="wrap_content"
-            android:textColor="#FFFFFFFF"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/standings_header_wins"
-            android:text="@string/l"/>
+            app:layout_constraintStart_toEndOf="@id/standings_entry_wins"
+            android:text="24"/>
 
     <TextView
-            android:id="@+id/standings_header_ot"
+            android:id="@+id/standings_entry_ot"
             android:layout_width="32dp"
             android:layout_height="wrap_content"
-            android:textColor="#FFFFFFFF"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/standings_header_losses"
-            android:text="@string/ot"/>
+            app:layout_constraintStart_toEndOf="@id/standings_entry_losses"
+            android:text="12"/>
 
     <TextView
-            android:id="@+id/standings_header_pts"
+            android:id="@+id/standings_entry_pts"
             android:layout_width="32dp"
             android:layout_height="wrap_content"
-            android:textColor="#FFFFFFFF"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/standings_header_ot"
-            android:text="@string/pts"/>
-</com.shaynek.hockey.standings.StandingsHeaderView>
+            app:layout_constraintStart_toEndOf="@id/standings_entry_ot"
+            android:text="104"/>
+</com.shaynek.hockey.standings.StandingsEntryView>

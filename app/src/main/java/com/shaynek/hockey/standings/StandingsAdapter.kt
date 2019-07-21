@@ -1,14 +1,13 @@
 package com.shaynek.hockey.standings
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.shaynek.hockey.R
 import com.shaynek.hockey.common.model.Standings
 
 private const val HEADER_VIEW_TYPE = 1
-private const val TEAM_VIEW_TYPE = 2
+private const val ENTRY_VIEW_TYPE = 2
 
 class StandingsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -18,18 +17,22 @@ class StandingsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             calculateHeaderPositions()
             notifyDataSetChanged()
         }
-    val headerPositions: LinkedHashSet<Int> = LinkedHashSet()
+    private val headerPositions: LinkedHashSet<Int> = LinkedHashSet()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             HEADER_VIEW_TYPE -> {
                 val view = LayoutInflater
                     .from(parent.context)
-                    .inflate(R.layout.standings_header_view, parent, false)
-                        as StandingsHeaderView
+                    .inflate(R.layout.standings_header_view, parent, false) as StandingsHeaderView
                 HeaderViewHolder(view)
             }
-            else -> TeamViewHolder(View(parent.context))
+            else -> {
+                val view = LayoutInflater
+                    .from(parent.context)
+                    .inflate(R.layout.standings_entry_view, parent, false) as StandingsEntryView
+                EntryViewHolder(view)
+            }
         }
     }
 
@@ -38,8 +41,8 @@ class StandingsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             is HeaderViewHolder -> {
                 holder.headerView.setDivision(data[headerPositions.indexOf(position)].division.name)
             }
-            is TeamViewHolder -> {
-
+            is EntryViewHolder -> {
+                holder.entryView.setModel(data.flatMap { it.teamRecords }[position - getTeamOffset(position)])
             }
             else -> {
             }
@@ -49,7 +52,7 @@ class StandingsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun getItemCount(): Int = data.sumBy { it.teamRecords.size } + data.size
 
     override fun getItemViewType(position: Int): Int =
-        if (headerPositions.contains(position)) HEADER_VIEW_TYPE else TEAM_VIEW_TYPE
+        if (headerPositions.contains(position)) HEADER_VIEW_TYPE else ENTRY_VIEW_TYPE
 
     private fun calculateHeaderPositions() {
         headerPositions.clear()
@@ -61,6 +64,15 @@ class StandingsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    class HeaderViewHolder(val headerView: StandingsHeaderView) : RecyclerView.ViewHolder(headerView)
-    class TeamViewHolder(val view: View) : RecyclerView.ViewHolder(view)
+    private fun getTeamOffset(position: Int): Int {
+        var offset = 0
+        headerPositions.forEach {
+            if (it > position) return offset
+            offset++
+        }
+        return offset
+    }
+
+    private class HeaderViewHolder(val headerView: StandingsHeaderView) : RecyclerView.ViewHolder(headerView)
+    private class EntryViewHolder(val entryView: StandingsEntryView) : RecyclerView.ViewHolder(entryView)
 }
