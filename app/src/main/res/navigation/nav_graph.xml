@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/nav_graph.xml" app:startDestination="@id/selectTeamFragment">
+
+    <fragment android:id="@+id/selectTeamFragment" android:name="com.shaynek.hockey.selectteam.SelectTeamFragment"
+              android:label="SelectTeamFragment">
+        <action
+                android:id="@+id/action_selectTeamFragment_to_standingsFragment"
+                app:destination="@id/standingsFragment"/>
+    </fragment>
+    <fragment
+            android:id="@+id/standingsFragment"
+            android:name="com.shaynek.hockey.standings.StandingsFragment"
+            android:label="StandingsFragment"/>
+</navigation>
