@@ -86,7 +86,7 @@ class StandingsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         return offset
     }
 
-    private class TitleViewHolder(val view: View) : RecyclerView.ViewHolder(view)
+    private class TitleViewHolder(view: View) : RecyclerView.ViewHolder(view)
     private class HeaderViewHolder(val headerView: StandingsHeaderView) : RecyclerView.ViewHolder(headerView)
     private class EntryViewHolder(val entryView: StandingsEntryView) : RecyclerView.ViewHolder(entryView)
 }

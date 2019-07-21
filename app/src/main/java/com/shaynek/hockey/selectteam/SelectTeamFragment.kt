@@ -11,9 +11,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
-import com.shaynek.hockey.common.BaseFragment
+import com.shaynek.hockey.BaseFragment
 import com.shaynek.hockey.R
+import com.shaynek.hockey.common.AppRepository
 import com.shaynek.hockey.common.db.Preferences
 import com.shaynek.hockey.common.di.AppInjector
 import com.shaynek.hockey.common.model.DataStatus
@@ -23,7 +23,7 @@ import javax.inject.Inject
 class SelectTeamFragment : BaseFragment() {
 
     @Inject
-    lateinit var repository: SelectTeamRepository
+    lateinit var repository: AppRepository
 
     @Inject
     lateinit var prefs: Preferences

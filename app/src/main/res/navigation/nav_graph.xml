@@ -13,4 +13,8 @@
             android:id="@+id/standingsFragment"
             android:name="com.shaynek.hockey.standings.StandingsFragment"
             android:label="StandingsFragment"/>
+    <fragment
+            android:id="@+id/scheduleFragment"
+            android:name="com.shaynek.hockey.schedule.ScheduleFragment"
+            android:label="ScheduleFragment"/>
 </navigation>

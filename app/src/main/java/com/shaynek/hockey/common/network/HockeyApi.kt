@@ -1,5 +1,6 @@
 package com.shaynek.hockey.common.network
 
+import com.shaynek.hockey.common.model.ScheduleResponse
 import com.shaynek.hockey.common.model.SeasonsResponse
 import com.shaynek.hockey.common.model.StandingsResponse
 import com.shaynek.hockey.common.model.TeamsResponse
@@ -33,5 +34,5 @@ interface HockeyApi {
         @Query("startDate") startDate: String? = null,
         @Query("endDate") endDate: String? = null,
         @Query("expand") expand: String? = null
-    )
+    ): Observable<ScheduleResponse>
 }

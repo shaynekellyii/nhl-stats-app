@@ -2,6 +2,7 @@ package com.shaynek.hockey.selectteam
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.shaynek.hockey.common.AppRepository
 import com.shaynek.hockey.common.db.Preferences
 import com.shaynek.hockey.common.model.DataStatus
 import com.shaynek.hockey.common.model.Team
@@ -9,7 +10,7 @@ import com.shaynek.hockey.common.model.TeamsResponse
 import io.reactivex.disposables.CompositeDisposable
 
 class SelectTeamViewModel(
-    private val repository: SelectTeamRepository,
+    private val repository: AppRepository,
     private val prefs: Preferences
 ) : ViewModel() {
 

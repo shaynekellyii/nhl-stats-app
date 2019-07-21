@@ -2,13 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-            android:id="@+id/navigation_games"
+            android:id="@+id/scheduleFragment"
             android:icon="@drawable/ic_home_black_24dp"
-            android:title="Games"/>
+            android:title="@string/schedule"/>
 
     <item
-            android:id="@+id/navigation_standings"
+            android:id="@+id/standingsFragment"
             android:icon="@drawable/ic_dashboard_black_24dp"
-            android:title="Standings"/>
+            android:title="@string/standings"/>
 
 </menu>

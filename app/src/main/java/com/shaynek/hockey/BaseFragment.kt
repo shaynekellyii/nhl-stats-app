@@ -1,4 +1,4 @@
-package com.shaynek.hockey.common
+package com.shaynek.hockey
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
