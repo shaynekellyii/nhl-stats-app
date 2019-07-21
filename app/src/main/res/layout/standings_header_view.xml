@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.shaynek.hockey.standings.StandingsHeaderView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:background="#33000000">
+
+    <TextView
+            android:id="@+id/standings_header_division"
+            android:layout_width="96dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Metropolitan"/>
+
+    <TextView
+            android:id="@+id/standings_header_wins"
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/standings_header_division"
+            android:text="W"/>
+
+    <TextView
+            android:id="@+id/standings_header_losses"
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/standings_header_wins"
+            android:text="L"/>
+
+    <TextView
+            android:id="@+id/standings_header_ot"
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/standings_header_losses"
+            android:text="OT"/>
+
+    <TextView
+            android:id="@+id/standings_header_pts"
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/standings_header_ot"
+            android:text="PTS"/>
+</com.shaynek.hockey.standings.StandingsHeaderView>
