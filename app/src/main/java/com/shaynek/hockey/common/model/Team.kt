@@ -1,7 +1,14 @@
 package com.shaynek.hockey.common.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
+import com.shaynek.hockey.common.db.Converters
+
+@Entity(tableName = "teams")
+@TypeConverters(Converters::class)
 data class Team(
-    val id: Int,
+    @PrimaryKey val id: Int,
     val name: String,
     val venue: Venue,
     val abbreviation: String,

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.shaynek.hockey.BaseFragment
 import com.shaynek.hockey.R
 import com.shaynek.hockey.common.AppRepository
+import com.shaynek.hockey.common.db.HockeyDao
 import com.shaynek.hockey.common.db.Preferences
 import com.shaynek.hockey.common.di.AppInjector
 import com.shaynek.hockey.common.model.DataStatus
@@ -24,13 +25,14 @@ class SelectTeamFragment : BaseFragment() {
 
     @Inject
     lateinit var repository: AppRepository
-
     @Inject
     lateinit var prefs: Preferences
+    @Inject
+    lateinit var dao: HockeyDao
 
     private val viewModel: SelectTeamViewModel by lazy {
         ViewModelProviders
-            .of(this, viewModelFactory { SelectTeamViewModel(repository, prefs) })
+            .of(this, viewModelFactory { SelectTeamViewModel(repository, dao, prefs) })
             .get(SelectTeamViewModel::class.java)
     }
     private val adapter by lazy { SelectTeamAdapter(viewModel) }

@@ -27,11 +27,11 @@ class HockeyActivity : AppCompatActivity() {
         val navHost = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHost.navController
 
-        if (prefs.getFavoriteTeam() != NO_ID_SET) {
-            val navGraph = navController.navInflater.inflate(R.navigation.nav_graph)
-            navGraph.startDestination = R.id.scheduleFragment
-            navController.graph = navGraph
-        }
+//        if (prefs.getFavoriteTeam() != NO_ID_SET) {
+//            val navGraph = navController.navInflater.inflate(R.navigation.nav_graph)
+//            navGraph.startDestination = R.id.scheduleFragment
+//            navController.graph = navGraph
+//        }
 
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
         navView.setupWithNavController(navController)
