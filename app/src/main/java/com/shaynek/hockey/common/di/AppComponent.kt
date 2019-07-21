@@ -2,6 +2,7 @@ package com.shaynek.hockey.common.di
 
 import com.shaynek.hockey.HockeyActivity
 import com.shaynek.hockey.selectteam.SelectTeamFragment
+import com.shaynek.hockey.standings.StandingsFragment
 import dagger.Component
 import javax.inject.Singleton
 
@@ -10,6 +11,7 @@ import javax.inject.Singleton
 interface AppComponent {
 
     fun inject(fragment: SelectTeamFragment)
+    fun inject(fragment: StandingsFragment)
     fun inject(activity: HockeyActivity)
 
     @Component.Builder
