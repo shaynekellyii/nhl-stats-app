@@ -7,6 +7,7 @@ import com.shaynek.hockey.common.AppRepository
 import com.shaynek.hockey.common.db.HockeyDao
 import com.shaynek.hockey.common.db.HockeyDb
 import com.shaynek.hockey.common.db.Preferences
+import com.shaynek.hockey.common.db.dbName
 import com.shaynek.hockey.common.network.HockeyApi
 import com.shaynek.hockey.common.util.API_BASE_URL
 import dagger.Module
@@ -24,7 +25,7 @@ class AppModule(private val appContext: Context) {
     @Provides
     @Singleton
     fun provideDb(): HockeyDb = Room
-        .databaseBuilder(appContext, HockeyDb::class.java, "hockey-db")
+        .databaseBuilder(appContext, HockeyDb::class.java, dbName)
         .build()
 
     @Provides
@@ -45,7 +46,8 @@ class AppModule(private val appContext: Context) {
 
     @Provides
     @Reusable
-    fun provideRepository(hockeyApi: HockeyApi): AppRepository = AppRepository(hockeyApi)
+    fun provideRepository(hockeyApi: HockeyApi, dao: HockeyDao, prefs: Preferences): AppRepository =
+        AppRepository(hockeyApi, dao, prefs)
 
     @Provides
     @Reusable

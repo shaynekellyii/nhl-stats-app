@@ -11,6 +11,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.shaynek.hockey.common.db.NO_ID_SET
 import com.shaynek.hockey.common.db.Preferences
 import com.shaynek.hockey.common.di.AppInjector
+import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 class HockeyActivity : AppCompatActivity() {
@@ -33,7 +34,6 @@ class HockeyActivity : AppCompatActivity() {
 //            navController.graph = navGraph
 //        }
 
-        val navView: BottomNavigationView = findViewById(R.id.nav_view)
-        navView.setupWithNavController(navController)
+        nav_view.setupWithNavController(navController)
     }
 }

@@ -10,7 +10,7 @@ import io.reactivex.Maybe
 interface HockeyDao {
 
     @Query("SELECT * FROM teams")
-    fun getAllTeams(): Maybe<List<Team>>
+    fun getAllTeams(): Flowable<List<Team>>
 
     @Query("SELECT * FROM teams WHERE id IN (:teamIds)")
     fun loadAllTeamsByIds(teamIds: IntArray): Flowable<List<Team>>
@@ -19,8 +19,8 @@ interface HockeyDao {
     fun insertAllTeams(teams: List<Team>): Completable
 
     @Delete
-    fun deleteTeam(team: Team)
+    fun deleteTeam(team: Team): Completable
 
     @Query("DELETE FROM teams")
-    fun deleteAllTeams()
+    fun deleteAllTeams(): Completable
 }

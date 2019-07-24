@@ -5,6 +5,7 @@ import com.shaynek.hockey.common.model.SeasonsResponse
 import com.shaynek.hockey.common.model.StandingsResponse
 import com.shaynek.hockey.common.model.TeamsResponse
 import com.shaynek.hockey.common.util.FIRST_DAY_OF_2019_2020
+import io.reactivex.Flowable
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -15,7 +16,7 @@ interface HockeyApi {
         @Query("expand") expand: String? = null,
         @Query("teamId") teamId: String? = null,
         @Query("stats") stats: String? = null
-    ): Observable<TeamsResponse>
+    ): Flowable<TeamsResponse>
 
     @GET("api/v1/seasons/current")
     fun getCurrentSeason() : Observable<SeasonsResponse>

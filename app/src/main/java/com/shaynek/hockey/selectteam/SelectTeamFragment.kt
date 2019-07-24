@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,6 +19,7 @@ import com.shaynek.hockey.common.db.HockeyDao
 import com.shaynek.hockey.common.db.Preferences
 import com.shaynek.hockey.common.di.AppInjector
 import com.shaynek.hockey.common.model.DataStatus
+import com.shaynek.hockey.common.model.Resource
 import kotlinx.android.synthetic.main.fragment_select_team.*
 import javax.inject.Inject
 
@@ -27,12 +29,10 @@ class SelectTeamFragment : BaseFragment() {
     lateinit var repository: AppRepository
     @Inject
     lateinit var prefs: Preferences
-    @Inject
-    lateinit var dao: HockeyDao
 
     private val viewModel: SelectTeamViewModel by lazy {
         ViewModelProviders
-            .of(this, viewModelFactory { SelectTeamViewModel(repository, dao, prefs) })
+            .of(this, viewModelFactory { SelectTeamViewModel(repository) })
             .get(SelectTeamViewModel::class.java)
     }
     private val adapter by lazy { SelectTeamAdapter(viewModel) }
@@ -57,25 +57,23 @@ class SelectTeamFragment : BaseFragment() {
     }
 
     private fun initLiveDataObservers() {
-        viewModel.teams.observe(viewLifecycleOwner, Observer { teams -> if (teams != null) adapter.submitList(teams) })
-        viewModel.dataStatus.observe(viewLifecycleOwner, Observer {
+        viewModel.teamsResource.observe(viewLifecycleOwner, Observer {
             when (it) {
-                DataStatus.LOADING -> {
-                    select_team_progress_bar.visibility = View.VISIBLE
-                    select_team_recycler_view.visibility = View.GONE
-                    select_team_error_text.visibility = View.GONE
-                }
-                DataStatus.SUCCESS -> {
+                is Resource.Success -> {
                     select_team_progress_bar.visibility = View.GONE
                     select_team_recycler_view.visibility = View.VISIBLE
                     select_team_error_text.visibility = View.GONE
+                    adapter.submitList(it.data)
                 }
-                DataStatus.FAILURE -> {
+                is Resource.Failure -> {
                     select_team_progress_bar.visibility = View.GONE
                     select_team_recycler_view.visibility = View.GONE
                     select_team_error_text.visibility = View.VISIBLE
                 }
-                null -> {
+                is Resource.Loading -> {
+                    select_team_progress_bar.visibility = View.VISIBLE
+                    select_team_recycler_view.visibility = View.GONE
+                    select_team_error_text.visibility = View.GONE
                 }
             }
         })
