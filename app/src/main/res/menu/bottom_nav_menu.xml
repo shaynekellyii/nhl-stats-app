@@ -3,12 +3,12 @@
 
     <item
             android:id="@+id/scheduleFragment"
-            android:icon="@drawable/ic_home_black_24dp"
+            android:icon="@drawable/ic_outline_today"
             android:title="@string/schedule"/>
 
     <item
             android:id="@+id/standingsFragment"
-            android:icon="@drawable/ic_dashboard_black_24dp"
+            android:icon="@drawable/ic_outline_view_list"
             android:title="@string/standings"/>
 
 </menu>

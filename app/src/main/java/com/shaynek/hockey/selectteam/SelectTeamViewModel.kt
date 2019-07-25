@@ -4,25 +4,23 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.shaynek.hockey.common.AppRepository
 import com.shaynek.hockey.common.db.Preferences
-import com.shaynek.hockey.common.model.DataStatus
+import com.shaynek.hockey.common.model.Resource
 import com.shaynek.hockey.common.model.Team
-import com.shaynek.hockey.common.model.TeamsResponse
+import com.shaynek.hockey.common.util.addTo
+import com.shaynek.hockey.common.util.scheduleForAndroid
 import io.reactivex.disposables.CompositeDisposable
 
-class SelectTeamViewModel(
-    private val repository: AppRepository,
-    private val prefs: Preferences
-) : ViewModel() {
+class SelectTeamViewModel(private val repository: AppRepository) : ViewModel() {
 
-    val teams: MutableLiveData<List<Team>> = MutableLiveData()
-    val dataStatus: MutableLiveData<DataStatus> = MutableLiveData(DataStatus.LOADING)
     val isTeamSelected: MutableLiveData<Boolean> = MutableLiveData(false)
+    val teamsResource: MutableLiveData<Resource<List<Team>>> = MutableLiveData()
     private val disposable: CompositeDisposable = CompositeDisposable()
 
     init {
-        disposable.add(
-            repository.getTeams().subscribe(::onTeamsLoaded, ::onTeamsApiError)
-        )
+        repository.teamsFlowable
+            .scheduleForAndroid()
+            .subscribe(::onTeamsEmitted)
+            .addTo(disposable)
     }
 
     override fun onCleared() {
@@ -31,17 +29,9 @@ class SelectTeamViewModel(
     }
 
     fun onFavoriteTeamSelected(id: Int) {
-        prefs.setFavoriteTeam(id)
+        repository.setFavoriteTeam(id)
         isTeamSelected.postValue(true)
     }
 
-    private fun onTeamsLoaded(response: TeamsResponse?) {
-        response?.let { teams.postValue(it.teams.sortedBy { team -> team.name }) }
-        dataStatus.postValue(DataStatus.SUCCESS)
-    }
-
-    private fun onTeamsApiError(e: Throwable) {
-        e.printStackTrace()
-        dataStatus.postValue(DataStatus.FAILURE)
-    }
+    private fun onTeamsEmitted(resource: Resource<List<Team>>) = teamsResource.postValue(resource)
 }

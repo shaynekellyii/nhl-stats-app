@@ -49,7 +49,7 @@ class StandingsFragment : BaseFragment() {
 
     private fun initLiveDataObservers() {
         viewModel.standings.observe(viewLifecycleOwner, Observer {
-            if (!it.isNullOrEmpty()) adapter.data = it
+            if (!it.isNullOrEmpty()) adapter.divisions = it
         })
         viewModel.dataStatus.observe(viewLifecycleOwner, Observer {
             when (it) {
