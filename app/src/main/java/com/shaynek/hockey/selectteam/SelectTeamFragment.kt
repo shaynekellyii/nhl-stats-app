@@ -78,7 +78,7 @@ class SelectTeamFragment : BaseFragment() {
             }
         })
         viewModel.isTeamSelected.observe(viewLifecycleOwner, Observer {
-            if (it) findNavController().navigate(R.id.action_selectTeamFragment_to_standingsFragment)
+            if (it) findNavController().navigate(R.id.action_selectTeamFragment_to_scheduleFragment)
         })
     }
 }
